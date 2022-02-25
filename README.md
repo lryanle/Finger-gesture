@@ -1,2 +1,4 @@
-# Finger-gesture
-🚧 [WIP ]Finger Gesture Project
+# Finger Gesture based project
+🚧 [WIP]Finger Gesture Project
+
+
