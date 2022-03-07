@@ -1,6 +1,12 @@
 # Finger Gesture based project
 🚧 [WIP]Finger Gesture Project
 
-Alex Rios Testing :)
+# contributor
+nhi tran
+Enelin Medrano
 
-Testing :)
+
+
+
+
+Alex Rios Testing :)
