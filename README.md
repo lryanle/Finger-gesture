@@ -3,9 +3,10 @@
 
 # Core Contributor
 - Chandra Dasari
-- Nhi tran
+- Nhi Tran
 - Enelin Medrano
 - Alex Rios
+- Ryan Lahlou
 - Tyler Do
 
 # Project Purpose
