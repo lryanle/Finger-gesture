@@ -16,8 +16,6 @@ const landmarkColors = {
 };
 
 const gestureStrings = {
-    // 'thumbs_up': '👍',
-    // 'victory': '✌🏻'
     'playGesture': '✊',
     'pauseGesture': '✋',
     'f10sGesture1': '👉',
@@ -53,6 +51,7 @@ async function main() {
     const showTimer = show => {
         $timerRing.style.visibility = (show ? 'visible' : 'hidden');
     }
+    showTimer(false);
 
     // configure gesture estimator
     const knownGestures = [
@@ -117,11 +116,26 @@ async function main() {
                     confidence = 0;
                 }
 
-                if (confidence == 30) { // Every 30 calls, actiate method
+                if (confidence == 20) { // Every 20 calls, actiate method
                     console.log(`hit: ${currGest}`); // method
+                    switch (currGest) {
+                        case '✋':
+                            pauseVideo();
+                            break;
+                        case '✊':
+                            playVideo();
+                            break;
+                        case '👉':
+                            f10s();
+                            break;
+                        case '👈':
+                            b10s();
+                            break;
+                    }
                     // confidence = 0;
                 }
-                setTimerProgress(confidence < 30 ? confidence / 30 : 1);
+                setTimerProgress(confidence < 20 ? confidence / 20 : 1);
+                if (confidence > 20) confidence = -2;
             }
 
             // update debug info
@@ -199,3 +213,69 @@ window.addEventListener("DOMContentLoaded", () => {
     canvas.height = config.video.height;
     console.log("Canvas initialized");
 });
+
+// youtube embed
+var tag = document.createElement("script");
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player("player", {
+        host: "https://www.youtube.com",
+        /* no need to specify player 
+        size here since it is handled 
+        by the player-size div */
+        videoId: "FaWIn_wjo6w",
+        width: '640',
+        height: '480',
+        playerVars: {
+            enablejsapi: 1,
+            playsinline: 1,
+            start: 0,
+            disablekb: 0
+        },
+        events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange
+        }
+    });
+}
+
+// auto-play video
+function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+function onPlayerStateChange(event) {
+    console.log("player state: " + player.getPlayerState());
+}
+
+// update youtube video
+function updateVideoId() {
+    let videoId = document.getElementById("videoId").value;
+    player.loadVideoById(videoId, -1);
+}
+
+// stop video
+function pauseVideo() {
+    player.pauseVideo();
+}
+
+// play video
+function playVideo() {
+    player.playVideo();
+}
+
+// go back 10 seconds
+function b10s() {
+    player.seekTo(player.getCurrentTime() - 10, true);
+}
+
+// go forward 10s
+function f10s() {
+    player.seekTo(player.getCurrentTime() + 10, true);
+}
