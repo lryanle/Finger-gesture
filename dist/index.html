@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- content header-->
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+		<title>FGR - SASE RIG</title>
+		<link rel="icon" type="image/x-icon" href="../assets/favicon.png">
+
+		<!-- dependencies -->
+		<script src="https://unpkg.com/@tensorflow/tfjs-core@3.7.0/dist/tf-core.js"></script>
+		<script src="https://unpkg.com/@tensorflow/tfjs-converter@3.7.0/dist/tf-converter.js"></script>
+		<script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@3.7.0/dist/tf-backend-webgl.js"></script>
+		<script src="https://unpkg.com/@tensorflow-models/handpose@0.0.7/dist/handpose.js"></script>
+		<script src="fingerpose.js" type="text/javascript"></script>
+		<script src="script.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class="video">
+				<div id="video-container">
+					<video id="pose-video" class="layer" playsinline></video>
+					<canvas id="pose-canvas" class="layer"></canvas>
+
+					<div class="player-hand-container">
+						<div id="player-hand" class="player-hand layer"></div>
+						<svg id="timer-ring" class="timer-ring" height="100" width="100">
+							<circle class="timer-ring-circle" stroke-width="6" stroke="white" fill="transparent" r="38"
+								cx="50" cy="50" />
+							<circle id="timer-ring-circle" class="timer-ring-circle" stroke-width="6" stroke="blue"
+								fill="transparent" r="38" cx="50" cy="50" />
+						</svg>
+					</div>
+				</div>
+			</div>
+
+			<div id="player-size" style="">
+				<div id="cropping-div" style="">
+				<div id="div-to-crop" style="">
+					<div id="player-wrapper">
+					<div id="player"></div>
+					</div>
+				</div>
+				</div>
+			</div>
+
+			<div class="debug">
+				<table class="summary">
+					<thead>
+						<tr>
+							<th>Idx</th>
+							<th>Finger</th>
+							<th style="width: 110px">Curl</th>
+							<th style="width: 170px">Direction</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0</td>
+							<td>Thumb</td>
+							<td><span id="curl-0">-</span></td>
+							<td><span id="dir-0">-</span></td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Index</td>
+							<td><span id="curl-1">-</span></td>
+							<td><span id="dir-1">-</span></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Middle</td>
+							<td><span id="curl-2">-</span></td>
+							<td><span id="dir-2">-</span></td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Ring</td>
+							<td><span id="curl-3">-</span></td>
+							<td><span id="dir-3">-</span></td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Pinky</td>
+							<td><span id="curl-4">-</span></td>
+							<td><span id="dir-4">-</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<table style="border: 0; width: 310px;">
+				<tbody>
+				<tr style="background: #fff;">
+					<td>
+					<label for="videoId-property">videoId: </label>
+					<input type="text" id="videoId" style="width: 100px"><br>
+					</td>
+		
+					<td style="">
+					<button id="videoId-properties" onclick="updateVideoId()">Update Player</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+		
+	</body>
+</html>
