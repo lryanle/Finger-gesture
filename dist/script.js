@@ -146,7 +146,7 @@ async function main() {
         setTimeout(() => {
             estimateHands();
             showTimer(false);
-        }, 1000 / config.video.fps);
+        }, 40);
     };
 
     estimateHands();
