@@ -1,5 +1,5 @@
 # Finger Gesture based project
-🚧 [WIP]Finger Gesture Project
+Control a youtube video using gestures recogniced with a webcam. Using tensorflow.js we are able ot identify landmarks in hands and assign custom action for each unique gesture.
 
 # Core Contributor
 - Chandra Dasari
